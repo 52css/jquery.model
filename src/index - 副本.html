@@ -1,0 +1,1068 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  <title>单页面切换</title>
+  <link rel="stylesheet" href="less/main.min.css"/>
+  <link rel="stylesheet" href="css/font-awesome.min.css"/>
+</head>
+<!-- open-status open-left open-top -->
+<body id="body" class=""> <!-- theme-red layout-dark -->
+<div class="status-bar"></div>
+<div class="status-body">
+  <div id="left" class="left layout-dark theme-white" vm-class="{'open-left': data.show}">
+    <div class="view">
+      <div class="page in">
+        <header class="header">
+
+        </header>
+        <div class="content">
+          this is left
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="right" class="right layout-dark" vm-class="{'open-right': data.show}">
+    <div class="page in">
+      <header class="header"></header>
+      <div class="content">this is right</div>
+      <footer class="footer"></footer>
+    </div>
+  </div>
+  <div class="main">
+    <div id="top" class="top" vm-class="{'open-top': !!data.show}">
+      <div class="top-in">
+        {{data.content}}
+      </div>
+    </div>
+    <div id="home" class="view">
+      <div class="page in">
+        <header class="header">
+          <div class="header-left">
+            <a href="" class="open-left">Left</a>
+          </div>
+          <div class="header-center">
+            <h1 class="header-center-in">
+              framework
+            </h1>
+          </div>
+          <div class="header-right">
+            <a href="" class="open-right">right</a>
+          </div>
+        </header>
+        <div class="content">
+          this is main
+          <button class="btn open-left">
+            open left
+          </button>
+          <button class="btn open-right">
+            open right
+          </button>
+          <button class="btn open-top">
+            open top
+          </button>
+          <button class="btn open-bottom">
+            open bottom
+          </button>
+          <button class="btn open-preloader">
+            open preloader
+          </button>
+          <button class="btn open-alert">
+            open one alert
+          </button>
+          <button class="btn open-alert-callback">
+            open one alert with callback
+          </button>
+          <button class="btn open-mulit-alert">
+            open mulit alert
+          </button>
+          <button class="btn open-mulit-alert-callback">
+            open mulit alert with callback
+          </button>
+          <button class="btn open-confirm">
+            open confirm
+          </button>
+          <button class="btn open-confirm-ok">
+            open confirm ok
+          </button>
+          <button class="btn open-indicator">
+            open indicator
+          </button>
+          <button class="btn open-preloader">
+            open preloader
+          </button>
+          <button class="btn open-preloader2">
+            open preloader2
+          </button>
+          <button class="btn open-bottom-btn">
+            open bottom btn
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="bottom" class="bottom" vm-class="{'open-bottom': data.show}">
+      <div class="in">
+        <header class="header">
+          <div class="header-center">
+            <h1 class="header-center-in">
+              open bottom
+            </h1>
+          </div>
+          <div class="header-right">
+            <a href="" class="close-bottom">done</a>
+          </div>
+        </header>
+        <div class="content">
+          <div vm-if="data.content">
+            {{data.content}}
+          </div>
+          <div vm-else>
+            Integer mollis nulla id nibh elementum finibus. Maecenas eget fermentum ipsum. Sed sagittis condimentum nisl at tempus. Duis lacus libero, laoreet vitae ligula a, aliquet eleifend sapien. Nullam sodales viverra sodales. Nulla hendrerit condimentum dolor facilisis tempor. Donec at est malesuada, sagittis nisi et, accumsan enim.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="mask" class="mask" vm-class="{'open-mask':data.show, 'mask-white': !data.black, 'mask-black': data.black}"></div>
+
+  <div id="indicator" class="indicator" vm-class="{'open-indicator': data.show}">
+    <div class="indicator-in">
+      <i class="fa fa-spinner fa-pulse fa-2x"></i>
+    </div>
+  </div>
+
+
+  <!--<a href="" class="btn btn-link">Cancel</a>-->
+  <!--<a href="" class="btn btn-link">OK</a>-->
+  <div id="modal">
+    <div class="alert" vm-repeat="data">
+      <div class="alert-in">
+        <div class="alert-title">
+          {{$item.title || 'Framework'}}
+        </div>
+        <div class="alert-content">
+          {{$item.content | html}}
+        </div>
+        <div class="alert-btn">
+          <a href="" class="btn btn-link" vm-repeat="$item.btn">{{$item1.text}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bottomBtn" class="bottom-btn" vm-class="{'open-bottom-btn': data.show}">
+    <div class="bottom-btn-in">
+      <ul class="list list-inset">
+        <li>
+          <div class="list-content">
+            <div class="list-inner">
+              <div class="list-title">
+                Here comes some optional description or warning for actions below
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="" class="list-content btn btn-link">
+            <div class="list-inner">
+              <div class="list-title">
+                Ivan Petrov
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="" class="list-content btn btn-link color-red">
+            <div class="list-inner">
+              <div class="list-title">
+                Ivan Petrov
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+      <ul class="list list-inset">
+        <li>
+          <a href="" class="list-content btn btn-link">
+            <div class="list-inner">
+              <div class="list-title">
+                Cancel
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script src="./js/lib/require.js"></script>
+<script>
+  // open-left open-right open-bottom open-top open-popup open-modal open-loading
+</script>
+<script>
+//  require(['./js/lib/jquery', './js/lib/jquery.dim'], function($) {
+//    $.dim('test', ['app'], function() {
+//      debugger;
+//    });
+//  });
+
+  require(['./js/lib/jquery', './js/lib/jquery.dim'], function($) {
+    $.dim('left', function(r, exports, module) {
+      var
+        self = this,
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+      module.exports = mc({
+        data: {
+          show: false
+        },
+        isShow: function() {
+          var model = module.exports;
+          return model.data.show;
+        },
+        show: function() {
+          var model = module.exports;
+          model.data.show = true;
+        },
+        hide: function() {
+          var model = module.exports;
+          model.data.show = false;
+        }
+      });
+    });
+    $.dim('right', function(r, exports, module) {
+      var
+        self = this,
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+      module.exports = mc({
+        data: {
+          show: false
+        },
+        isShow: function() {
+          var model = module.exports;
+          return model.data.show;
+        },
+        show: function() {
+          var model = module.exports;
+          model.data.show = true;
+        },
+        hide: function() {
+          var model = module.exports;
+          model.data.show = false;
+        }
+      });
+    });
+    $.dim('top', function(r, exports, module) {
+      var
+        self = this,
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+      module.exports = mc({
+        data: {
+          show: false,
+          content: 'this is top'
+        },
+        isShow: function() {
+          var model = module.exports;
+          return model.data.show;
+        },
+        show: function(content) {
+          var model = module.exports;
+          model.data.content = content;
+          model.data.show = true;
+        },
+        hide: function() {
+          var model = module.exports;
+          model.data.show = false;
+        }
+      });
+    });
+    $.dim('bottom', function(r, exports, module) {
+      var
+        self = this,
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+      module.exports = mc({
+        data: {
+          show: false,
+          content: ''
+        },
+        isShow: function() {
+          var model = module.exports;
+          return model.data.show;
+        },
+        show: function(content) {
+          var model = module.exports;
+          model.data.content = content;
+          model.data.show = true;
+        },
+        hide: function() {
+          var model = module.exports;
+          model.data.show = false;
+        }
+      }, {
+        close: function() {
+          $(this).on('click', '.close-bottom', function() {
+            var model = module.exports;
+            model.hide();
+          });
+        }
+      });
+    });
+    $.dim('mask', function(r, exports, module) {
+      var
+        self = this,
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+      module.exports = mc({
+        data: {
+          show: false,
+          black: true
+        },
+        isShow: function() {
+          var model = module.exports;
+          return model.data.show;
+        },
+        showBlack: function() {
+          var model = module.exports;
+          model.data.black = true;
+          model.data.show = true;
+        },
+        showWhite: function() {
+          var model = module.exports;
+          model.data.black = false;
+          model.data.show = true;
+        },
+        hide: function() {
+          var model = module.exports;
+          model.data.show = false;
+        }
+      });
+    });
+    $.dim('indicator', ['mask'], function(r, exports, module) {
+      var
+        self = this,
+        mask = r('mask'),
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+      module.exports = mc({
+        data: {
+          show: false
+        },
+        isShow: function() {
+          var model = module.exports;
+          return model.data.show;
+        },
+        show: function() {
+          var model = module.exports;
+          mask.showWhite();
+          model.data.show = true;
+        },
+        hide: function() {
+          var model = module.exports;
+          mask.hide();
+          model.data.show = false;
+        }
+      });
+    });
+    $.dim('modal', ['mask'], function(r, exports, module) {
+      var
+        self = this,
+        mask = r('mask'),
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        },
+        create = function(text, title, btn, callbackOk, callbackCancel) {
+          var model = module.exports,
+            $alertFirst,
+            $alert;
+
+          model.data.push({
+            show: false,
+            title: title,
+            content: text,
+            btn: btn
+          });
+
+          mask.showBlack();
+          $alertFirst = $('.alert:first');
+
+          $alert = $('.alert:eq(' + (model.data.length - 1) + ')');
+          if (callbackOk) {
+            $alert.find('.btn:last').on('click', callbackOk);
+          }
+          if (callbackCancel) {
+            $alert.find('.btn:first').on('click', callbackCancel);
+          }
+          if (!model.data[0].show) {
+            model.data[0].show = true;
+            $alertFirst.show();
+            setTimeout(function() {
+              $alertFirst.find('.alert-in').addClass('open-alert');
+            }, 0);
+          }
+        };
+
+      module.exports = mc({
+        data: [],
+        confirm: function(text, title, callbackOk, cancelCallback) {
+          create(text, title, [{text: 'Cancel'}, {text: 'Ok'}], callbackOk, cancelCallback);
+        },
+        alert: function(text, title, callbackOk) {
+          create(text, title, [{text: 'Ok'}], callbackOk);
+        },
+        preloader: function(title) {
+          create('<i class="fa fa-spinner fa-pulse fa-2x"></i>', title || 'Loading...', []);
+        },
+        preloader2: function(title) {
+          create('333<i class="fa fa-spinner fa-pulse fa-2x"></i>', title || 'Loading...', []);
+        },
+        hide: function() {
+          var model = module.exports,
+            $second = $('.alert:eq(1)').show();
+          $('.alert:first .alert-in').removeClass('open-alert').addClass('close-alert').on('transitionend webkitTransitionEnd', function() {
+            model.data.shift();
+            if (model.data.length) {
+            } else {
+              mask.hide();
+            }
+          });
+          setTimeout(function() {
+            $second.find('.alert-in').addClass('open-alert');
+          }, 0);
+        }
+      }, {
+        closeBtn: function() {
+          $(this).on('click', '.btn', function() {
+            var model = module.exports;
+            model.hide();
+          });
+        }
+      });
+    });
+    $.dim('bottomBtn', ['mask'], function(r, exports, module) {
+      var
+        self = this,
+        mask = r('mask'),
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+      module.exports = mc({
+        data: {
+          show: false,
+          list: []
+        },
+        isShow: function() {
+          var model = module.exports;
+          return model.data.show;
+        },
+        show: function(list) {
+          var model = module.exports;
+          model.data.list = list;
+          mask.showBlack();
+          model.data.show = true;
+        },
+        hide: function() {
+          var model = module.exports;
+          mask.hide();
+          model.data.show = false;
+        }
+      }, {
+        close: function() {
+          $(this).on('click', function(e) {
+            var model = module.exports,
+              $target = $(e.target),
+              $btn = $target.closest('.btn'),
+              $bottomBtn = $target.hasClass('bottom-btn');
+
+            if ($btn.length || $bottomBtn) {
+              model.hide();
+            }
+          });
+        }
+      });
+    });
+    $.dim('config', {
+      viewClassName: 'view',
+      pageClassName: 'page',
+      pageRule: '#!/', // '#!/pageId?id=123&test=test#bbb'
+      hashRule: '#',   // '#aaa'
+      pageUrlRule: '',    // 'pageUrl?id=123&test=test#aaa'
+      pageAnimateClassName: 'slide'
+    });
+
+    $.dim('app', ['top', 'bottom', 'left', 'right', 'modal', 'indicator', 'bottomBtn'], function(r, exports, module) {
+      var
+        self = this,
+        top = r('top'),
+        bottom = r('bottom'),
+        left = r('left'),
+        right = r('right'),
+        modal = r('modal'),
+        indicator = r('indicator'),
+        bottomBtn = r('bottomBtn'),
+        router = r('router'),
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+      module.exports = mc({
+        isShowLeft: left.isShow,
+        showLeft: left.show,
+        hideLeft: left.hide,
+        isShowRight: right.isShow,
+        showRight: right.show,
+        hideRight: right.hide,
+        isShowTop: top.isShow,
+        showTop: top.show,
+        hideTop: top.hide,
+        isShowBottom: bottom.isShow,
+        showBottom: bottom.show,
+        hideBottom: bottom.hide,
+        isShowIndicator: indicator.isShow,
+        showIndicator: indicator.show,
+        hideIndicator: indicator.hide,
+        alert: modal.alert,
+        confirm: modal.confirm,
+        showPreloader: modal.preloader,
+        hidePreloader: modal.hide,
+        showPreloader2: modal.preloader2,
+        showBottomBtn: bottomBtn.show,
+        hideBottomBtn: bottomBtn.hide
+      }, {
+        mainClick: function() {
+          $(document).on('click', function(e) {
+            var target = e.target,
+              $main = $(target).closest('.main');
+            if ($main && $main.length) {
+              if (left.isShow()) {
+                left.hide();
+              }
+
+              if (right.isShow()) {
+                right.hide();
+              }
+
+              if (bottomBtn.isShow()) {
+                bottomBtn.hide();
+              }
+            }
+          });
+        }
+      });
+    });
+    $.dim('router', ['indicator'], function(r, exports, module) {
+      var
+        self = this,
+        indicator = r('indicator'),
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        },
+        pages = {
+          structure: {
+            main: [],
+            left: [],
+            right: []
+          },
+          history: [],
+          area: 'main',
+          index: 0
+        },
+        getState = function(hash) {
+          var rtv = {},
+            arr,
+            arr1;
+          hash = hash || location.hash;
+
+          if (/^#\w+/.test(hash)) {
+            rtv.action = 'anchor';
+            rtv.anchor = hash.slice(1);
+          } else if (/^#!\//.test(hash)) {
+            rtv.url = hash;
+            rtv.action = 'pageId';
+            hash = hash.slice(3);
+            arr = hash.split('?');
+            if (arr[0]) {
+              rtv.pageId = arr[0];
+              rtv.href = rtv.pageId + '.html' + (arr[1] ? '?' + arr[1] : '');
+            }
+
+            if (arr[1]) {
+              arr1 = arr[1].split('#');
+              /// arr1.replace()
+              arr1[0].replace(
+                new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+                function ($0, $1, $2, $3) {
+                  rtv.query[$1] = unescape($3);
+                }
+              );
+              if (arr1[1]) {
+                rtv.anchor = arr[1];
+              }
+            }
+          } else {
+            rtv.action = 'pageUrl';
+            rtv.pageUrl = hash;
+            arr = hash.split('?');
+            rtv.pageName = arr[0];
+            if (arr[0]) {
+              rtv.pageId = arr[0].split('.').slice(0, -1).join('.');
+              rtv.url = '#!/' + rtv.pageId + (arr[1] ? '?' + arr[1] : '');
+            }
+            if (arr[1]) {
+              arr1 = arr[1].split('#');
+              /// arr1.replace()
+              arr1[0].replace(
+                new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+                function ($0, $1, $2, $3) {
+                  rtv.query[$1] = unescape($3);
+                }
+              );
+              if (arr1[1]) {
+                rtv.anchor = arr[1];
+              }
+            }
+          }
+          return rtv;
+        },
+        replaceState = function(state, title, url) {
+          title = title || state.title;
+          document.title = title;
+          url = url || state.url;
+          history.replaceState(state, title, url);
+        },
+        pushState = function(state, title, url) {
+          title = title || state.title;
+          document.title = title;
+          url = url || state.url;
+          history.pushState(state, title, url);
+        },
+        switchPage = function(state, toPageId, toPageIndex, noPush) {
+          state.time = new Date();
+          var lastVisit = visitPage[visitPage.length - 1];
+
+
+          var formPageId = $.type(lastVisit) === 'array' ? lastVisit[lastVisit.length - 1] : lastVisit,
+            $from = $('#' + formPageId),
+            $to = $('#' + toPageId);
+
+          $.dim(formPageId + 'PageOut', {});
+          events.pageOut.forEach(function (n) {
+            if (n.pageName === formPageId || n.pageName === void(0) || n.pageName === null) {
+              n.callback(elFromPage);
+            }
+          });
+
+          if (header) {
+            header.innerHTML = elToPage.getAttribute('data-title');
+          }
+
+          noPush = noPush || false;
+          elToPage.style.visibility = 'visible';
+          elFromPage.style.visibility = 'visible';
+
+          elFromPage.classList.add('out');
+
+          elFromPage.classList.add(elFromPage.getAttribute('data-classname') || 'slide');
+          elFromPage.classList.remove('in');
+
+          elToPage.classList.remove('out');
+          elToPage.classList.add('in');
+          elToPage.classList.add(elToPage.getAttribute('data-classname') || 'slide');
+          state.title = elToPage.getAttribute('data-title');
+
+          var flag = visiter.some(function (n) {
+            if (n.pageId === toPageId) {
+              return n;
+            }
+          });
+          if (!flag) {
+            events.pageFirstInit.forEach(function (n) {
+              if (n.pageName === toPageId || n.pageName === void(0) || n.pageName === null) {
+                n.callback(elToPage);
+              }
+            });
+          }
+          events.pageInit.forEach(function (n) {
+            if (n.pageName === toPageId || n.pageName === void(0) || n.pageName === null) {
+              n.callback(elToPage);
+            }
+          });
+          if (oHistory.index > toPageIndex) {
+            elFromPage.classList.add('reverse');
+            elToPage.classList.add('reverse');
+          } else {
+            elFromPage.classList.remove('reverse');
+            elToPage.classList.remove('reverse');
+          }
+          //state.index = toPageIndex;
+          if (!noPush) {
+            $.pushState(state);
+          }
+          oHistory.index = toPageIndex;
+          visiter.push(state);
+        },
+        events = {
+          ajaxRender: [],
+          pageFirstInit: [],
+          pageInit: [],
+          pageBeforeAnimate: [],
+          pageAfterAnimate: [],
+          pageOut: []
+        },
+        animateend = function () {
+          var page = this,
+            id = page.id,
+            pageClassName = page.getAttribute('data-classname');
+          page.classList.remove(pageClassName);
+          if (!page.classList.contains('in')) {
+            page.style.visibility = 'hidden';
+          } else {
+            events.pageAfterAnimate.forEach(function (n) {
+              if (n.pageName === id || n.pageName === void(0) || n.pageName === null) {
+                n.callback(page);
+              }
+            });
+          }
+        },
+        animatestart = function () {
+          var page = this,
+            id = page.id;
+          if (page.classList.contains('in')) {
+            events.pageBeforeAnimate.forEach(function (n) {
+              if (n.pageName === id || n.pageName === void(0) || n.pageName === null) {
+                n.callback(page);
+              }
+            });
+          }
+        },
+        pageBind = function($page) {
+          var area = pages.area;
+          pages.structure[area].push($page);
+          $page.on('webkitAnimationEnd', animateend).on('webkitAnimationStart', animatestart);
+        },
+        loadPage = function(url, callback) {
+          var err, $page;
+          indicator.show();
+          $.ajax({
+            url: url,
+            success: function(content) {
+              $page = $(content).appendTo($('.' + pages.area + ' .view'));
+            },
+            error: function() {
+              err = '请求超时，请重试。';
+            },
+            complete: function() {
+              indicator.hide();
+              callback(err, $page);
+            }
+          });
+        };
+      module.exports = mc({
+        go: function(url) {
+          var myState = getState(url);
+
+          switch (myState.action) {
+            case 'pageId':
+              var $dom = $('#' + myState.pageId);
+
+              if ($dom && $dom.length) {
+                // 直接切换
+              } else {
+                // ajax 加载再切换
+              }
+              break;
+          }
+        },
+        back: function() {
+          history.back();
+        }
+      }, {
+        popstate: function() {
+          window.addEventListener('popstate', function (event) {
+            var state = event.state,
+              toPageId = state.pageId,
+              toPageIndex;
+            oHistory.history.forEach(function (n, i) {
+              if (n === toPageId) {
+                toPageIndex = i;
+                return false;
+              }
+            });
+            document.title = state.title;
+            switchPage(state, toPageId, toPageIndex, true);
+          });
+        },
+        click: function() {
+          $(document).on('click', 'a', function() {
+            var $this = $(this),
+              href = $this.attr('href'),
+              rel = $this.attr('data-rel'),
+              reload = $this.attr('data-reload');
+
+            if (href && !/^javascript/.test(href) && !/^#+$/.test(href) && rel !== 'external') {
+
+            }
+          });
+        },
+        init: function() {
+          var myState = getState(),
+            showFirstPage = function(index) {
+              var area = pages.area;
+
+              if (index === null) {
+                index = pages.index;
+              }
+
+              $.each(pages.structure[area], function(i, $page) {
+                var id;
+                if (i === index) {
+                  id = $page.attr('id');
+                  pages.history.push({
+                    area: area,
+                    pageId: pageId
+                  });
+                  $page.removeClass('out').addClass('in');
+                  $.each(events.pageFirstInit, function(i, n) {
+                    if (n.pageName === id || n.pageName === void(0) || n.pageName === null) {
+                      n.callback($page);
+                    }
+                  });
+                  $.each(events.pageInit, function(i, n) {
+                    if (n.pageName === id || n.pageName === void(0) || n.pageName === null) {
+                      n.callback($page);
+                    }
+                  });
+                } else {
+                  $page.removeClass('in').addClass('out');
+                }
+              });
+            };
+
+          $.each(pages.structure, function(area) {
+            $(area + ' .' + pageClassName).each(function() {
+              pageBind($(this));
+            });
+          });
+
+          if (myState.action === 'pageId') {
+            loadPage(myState.href, function(err, $page) {
+              if (err) {
+                alert(err);
+                return false;
+              }
+              pageBind($page);
+              showFirstPage(pages.structure[pages.area].length - 1);
+            });
+          } else {
+            showFirstPage();
+          }
+        }
+      });
+    });
+
+    $.dim('home', ['app', 'homeFirstPageInit'], function(r, exports, module) {
+      var
+        self = this,
+        app = r('app'),
+        mc = function(model, ctrl) {
+          ctrl && $.each(ctrl, function(i, n) {
+            n && n.call(self, model);
+          });
+          return model;
+        };
+
+
+      module.exports = mc({}, {
+        openLeft: function() {
+          $(this).on('click', '.open-left', function() {
+            if (!app.isShowLeft()) {
+              app.showLeft();
+              return false;
+            }
+          });
+        },
+        openRight: function() {
+          $(this).on('click', '.open-right', function() {
+            if (!app.isShowRight()) {
+              app.showRight();
+              return false;
+            }
+          });
+        },
+        openTop: function() {
+          $(this).on('click', '.open-top', function() {
+            app.showTop('aaaa');
+            return false;
+          });
+        },
+        openBottom: function() {
+          $(this).on('click', '.open-bottom', function() {
+            app.showBottom();
+            return false;
+          });
+        },
+        openAlert: function() {
+          $(this).on('click', '.open-alert', function() {
+            app.alert('my app', 'test111');
+            return false;
+          });
+        },
+        openAlertCallback: function() {
+          $(this).on('click', '.open-alert-callback', function() {
+            app.alert('my app', 'test222', function() {
+              alert(222);
+            });
+            return false;
+          });
+        },
+        openMulitAlert: function() {
+          $(this).on('click', '.open-mulit-alert', function() {
+            app.alert('my app', 'test333');
+
+            app.alert('my app', 'test444');
+
+            app.alert('my app', 'test555');
+            return false;
+          });
+        },
+        openMulitAlertCallback: function() {
+          $(this).on('click', '.open-mulit-alert-callback', function() {
+            app.alert('my app', 'test666', function() {
+              alert(666);
+            });
+
+            app.alert('my app', 'test777');
+
+            app.alert('my app', 'test888', function() {
+              alert(888);
+            });
+            return false;
+          });
+        },
+        openConfirm: function() {
+          $(this).on('click', '.open-confirm', function() {
+            app.confirm('my app', 'test999');
+            return false;
+          });
+        },
+        openConfirmOk: function() {
+          $(this).on('click', '.open-confirm-ok', function() {
+            app.confirm('my app', 'test999', function() {
+              alert('ok');
+            });
+            return false;
+          });
+        },
+        openIndicator: function() {
+          $(this).on('click', '.open-indicator', function() {
+            app.showIndicator();
+            setTimeout(function() {
+              app.hideIndicator();
+            }, 3000);
+            return false;
+          })
+        },
+        openPreloader: function() {
+          $(this).on('click', '.open-preloader', function() {
+            app.showPreloader();
+            setTimeout(function() {
+              app.hidePreloader();
+            }, 10000);
+            return false;
+          })
+        },
+        openPreloader2: function() {
+          $(this).on('click', '.open-preloader2', function() {
+            app.showPreloader2('My Text');
+            setTimeout(function() {
+              app.hidePreloader();
+            }, 10000);
+            return false;
+          })
+        },
+        openBottomBtn: function() {
+          $(this).on('click', '.open-bottom-btn', function() {
+            app.showBottomBtn();
+            return false;
+          })
+        }
+      });
+
+    });
+    $.dim('homeFirstPageInit', {});
+    $.dim('homePageInit', ['home'], function(r, exports, module) {
+    });
+
+  });
+//  require(['./js/lib/mobile', './js/lib/fastclick'], function(mobile, fastclick) {
+//    fastclick.attach(document.body);
+//    mobile
+//      .on('pageFirstInit', 'theme', function(page) {
+//        var body = document.body;
+//        ['layout', 'theme'].forEach(function(actionName) {
+//          [].slice.call(page.querySelectorAll('[data-' + actionName + ']')).forEach(function(node) {
+//            var className = node.getAttribute('data-' + actionName + '');
+//            node.addEventListener('click', function() {
+//              [].slice.call(body.classList).forEach(function(className) {
+//                if (new RegExp('^' + actionName + '\\-').test(className)) {
+//                  body.classList.remove(className);
+//                }
+//              });
+//              body.classList.add('' + actionName + '-' + className);
+//            }, false);
+//          });
+//        });
+//      })
+//      .init();
+//  });
+</script>
+</body>
+</html>
