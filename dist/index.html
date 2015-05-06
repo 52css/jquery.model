@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1.0,user-scalable=no"><title>单页面切换</title><link rel=stylesheet href=less/main.min.css><link rel=stylesheet href=css/font-awesome.min.css></head><body id=body><div class=status-bar></div><div class=status-body><div id=left class="left layout-dark theme-white" vm-class="{'open-left': data.show}"><div class=view><div id=left1 class="page out"><header class=header></header><div class=content>this is left <a href=#!/page1 class=btn>go page 1</a></div></div></div></div><div id=right class="right layout-dark" vm-class="{'open-right': data.show}"><div class=view><div id=right1 class="page out"><header class=header></header><div class=content>this is right1 <a href=#!/right2 class=btn>right2</a> <a href=#!/right3 class=btn>right3</a></div><footer class=footer></footer></div><div id=right2 class="page out"><header class=header></header><div class=content>this is right2 <a href=javascript:history.back(); class=btn>right1</a></div><footer class=footer></footer></div><div id=right3 class="page out"><header class=header></header><div class=content>this is right3 <a href=javascript:history.back(); class=btn>right1</a></div><footer class=footer></footer></div></div></div><div class=main><div id=top class=top vm-class="{'open-top': !!data.show}"><div class=top-in>{{data.content}}</div></div><div class=view><div id=pageHome class="page out" data-title="this is pageHome"><header class=header><div class=header-left></div><div class=header-center><h1 class=header-center-in>framework</h1></div><div class=header-right><a class=open-Left>Menu</a></div></header><div class=content><div class=wrapper><div class=scroller><section class="box box-xl"><div class=box-in>all eg: <a href=about.html class=btn>关于我们</a></div><ul class=list><li><a href=dialog.html class=list-content><div class=list-inner><div class=list-title>Dialog</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=tab.html class=list-content><div class=list-inner><div class=list-title>Tab</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=side-panels.html class=list-content><div class=list-inner><div class=list-title>Side Panels</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=btn.html class=list-content><div class=list-inner><div class=list-title>Btn</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=checkbox.html class=list-content><div class=list-inner><div class=list-title>Checkbox</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=grid.html class=list-content><div class=list-inner><div class=list-title>Grid</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=list.html class=list-content><div class=list-inner><div class=list-title>List</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=badge.html class=list-content><div class=list-inner><div class=list-title>Badge</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=theme.html class=list-content><div class=list-inner><div class=list-title>Theme</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li></ul></section></div></div></div></div><div id=page1 class="page out"><header class=header><div class=header-left><a class=open-left>Left</a></div><div class=header-center><h1 class=header-center-in>framework</h1></div><div class=header-right><a class=open-right>right</a></div></header><div class=content>this page 1 <a href=javascript:history.back(); class=btn>back</a></div></div></div><div id=bottom class=bottom vm-class="{'open-bottom': data.show}"><div class=in><header class=header><div class=header-center><h1 class=header-center-in>open bottom</h1></div><div class=header-right><a class=close-bottom>done</a></div></header><div class=content><div vm-if=data.content>{{data.content}}</div><div vm-else="">Integer mollis nulla id nibh elementum finibus. Maecenas eget fermentum ipsum. Sed sagittis condimentum nisl at tempus. Duis lacus libero, laoreet vitae ligula a, aliquet eleifend sapien. Nullam sodales viverra sodales. Nulla hendrerit condimentum dolor facilisis tempor. Donec at est malesuada, sagittis nisi et, accumsan enim.</div></div></div></div></div><div id=mask class=mask vm-class="{'open-mask':data.show, 'mask-white': !data.black, 'mask-black': data.black}"></div><div id=indicator class=indicator vm-class="{'open-indicator': data.show}"><div class=indicator-in><i class="fa fa-spinner fa-pulse fa-2x"></i></div></div><div id=modal><div class=alert vm-repeat=data><div class=alert-in><div class=alert-title>{{$item.title || 'Framework'}}</div><div class=alert-content>{{$item.content | html}}</div><div class=alert-btn><a class="btn btn-link" vm-repeat=$item.btn>{{$item1.text}}</a></div></div></div></div><div id=bottomBtn class=bottom-btn vm-class="{'open-bottom-btn': data.show}"><div class=bottom-btn-in><ul class="list list-inset"><li><div class=list-content><div class=list-inner><div class=list-title>Here comes some optional description or warning for actions below</div></div></div></li><li><a class="list-content btn btn-link"><div class=list-inner><div class=list-title>Ivan Petrov</div></div></a></li><li><a class="list-content btn btn-link color-red"><div class=list-inner><div class=list-title>Ivan Petrov</div></div></a></li></ul><ul class="list list-inset"><li><a class="list-content btn btn-link"><div class=list-inner><div class=list-title>Cancel</div></div></a></li></ul></div></div></div><script src=./js/lib/require.js></script><script>
+<!doctype html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1.0,user-scalable=no"><title>单页面切换</title><link rel=stylesheet href=less/main.min.css><link rel=stylesheet href=css/font-awesome.min.css></head><body id=body><div class=status-bar></div><div class=status-body><div id=left class="left layout-dark theme-white" vm-class="{'open-left': data.show}"><div class=view><div id=left1 class="page out"><header class=header></header><div class=content>this is left <a href=#!/page1 class=btn>go page 1</a></div></div></div></div><div id=right class="right layout-dark" vm-class="{'open-right': data.show}"><div class=view><div id=right1 class="page out"><header class=header></header><div class=content>this is right1 <a href=#!/right2 class=btn>right2</a> <a href=#!/right3 class=btn>right3</a></div><footer class=footer></footer></div><div id=right2 class="page out"><header class=header></header><div class=content>this is right2 <a href=javascript:history.back(); class=btn>right1</a></div><footer class=footer></footer></div><div id=right3 class="page out"><header class=header></header><div class=content>this is right3 <a href=javascript:history.back(); class=btn>right1</a></div><footer class=footer></footer></div></div></div><div class=main><div id=top class=top vm-class="{'open-top': !!data.show}"><div class=top-in>{{data.content}}</div></div><div class=view><div id=pageHome class="page out" data-title="this is pageHome"><header class=header><div class=header-left></div><div class=header-center><h1 class=header-center-in>framework</h1></div><div class=header-right><a class=open-Left>Menu</a></div></header><div class=content><div class=wrapper><div class=scroller><section class="box box-xl"><div class=box-in>all eg: <a href=about.html class=btn>关于我们</a></div><ul class=list><li><a href=dialog.html class=list-content><div class=list-inner><div class=list-title>Dialog</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=tab.html class=list-content><div class=list-inner><div class=list-title>Tab</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=side-panels.html class=list-content><div class=list-inner><div class=list-title>Side Panels</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=btn.html class=list-content><div class=list-inner><div class=list-title>Btn</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=grid.html class=list-content><div class=list-inner><div class=list-title>Grid</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=list.html class=list-content><div class=list-inner><div class=list-title>List</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=badge.html class=list-content><div class=list-inner><div class=list-title>Badge</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=theme.html class=list-content><div class=list-inner><div class=list-title>Theme</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li><li><a href=form-smart-select.html class=list-content><div class=list-inner><div class=list-title>Smart Select</div><div class=list-after><i class="fa fa-lg fa-angle-right"></i></div></div></a></li></ul></section></div></div></div></div><div id=page1 class="page out"><header class=header><div class=header-left><a class=open-left>Left</a></div><div class=header-center><h1 class=header-center-in>framework</h1></div><div class=header-right><a class=open-right>right</a></div></header><div class=content><div class=wrapper><div class=scoller>this page 1 <a href=javascript:history.back(); class=btn>back</a></div></div></div></div><div id=smart-select class="smart-select page out"><header class=header><div class=header-left><a href=javascript:history.back(); class="btn btn-link"><i class="fa fa-lg fa-chevron-left"></i> Back</a></div><div class=header-center><h1 class=header-center-in>{{title}}</h1></div><div class=header-right></div></header><div class=content><div class=wrapper><div class=scoller><section class="box box-xl"><ul class=list><li vm-repeat=list vm-class="{'li-selected': $item.selected, 'li-multiple': style == 'multiple', 'list-divider': $item.divider}" vm-data="{'id': $item.id}"><div vm-if=$item.divider>{{$item.divider}}</div><a class=list-content vm-else=""><div class=list-media><i class="fa fa-2x fa-circle-thin color-gray"></i> <i class="fa fa-2x fa-check-circle theme-highlight-color"></i></div><div class=list-inner><div class=list-title>{{$item.text}}</div><div class=list-after><i class="fa fa-check theme-highlight-color"></i></div></div></a></li></ul></section></div></div></div></div></div><div id=bottom class=bottom vm-class="{'open-bottom': data.show}"><div class=in><header class=header><div class=header-center><h1 class=header-center-in>open bottom</h1></div><div class=header-right><a class=close-bottom>done</a></div></header><div class=content><div vm-if=data.content>{{data.content}}</div><div vm-else="">Integer mollis nulla id nibh elementum finibus. Maecenas eget fermentum ipsum. Sed sagittis condimentum nisl at tempus. Duis lacus libero, laoreet vitae ligula a, aliquet eleifend sapien. Nullam sodales viverra sodales. Nulla hendrerit condimentum dolor facilisis tempor. Donec at est malesuada, sagittis nisi et, accumsan enim.</div></div></div></div></div><div id=mask class=mask vm-class="{'open-mask':data.show, 'mask-white': !data.black, 'mask-black': data.black}"></div><div id=indicator class=indicator vm-class="{'open-indicator': data.show}"><div class=indicator-in><i class="fa fa-spinner fa-pulse fa-2x"></i></div></div><div id=modal><div class=alert vm-repeat=data><div class=alert-in><div class=alert-title>{{$item.title || 'Framework'}}</div><div class=alert-content>{{$item.content | html}}</div><div class=alert-btn><a class="btn btn-link" vm-repeat=$item.btn>{{$item1.text}}</a></div></div></div></div><div id=bottomBtn class=bottom-btn vm-class="{'open-bottom-btn': data.show}"><div class=bottom-btn-in><ul class="list list-inset"><li><div class=list-content><div class=list-inner><div class=list-title>Here comes some optional description or warning for actions below</div></div></div></li><li><a class="list-content btn btn-link"><div class=list-inner><div class=list-title>Ivan Petrov</div></div></a></li><li><a class="list-content btn btn-link color-red"><div class=list-inner><div class=list-title>Ivan Petrov</div></div></a></li></ul><ul class="list list-inset"><li><a class="list-content btn btn-link"><div class=list-inner><div class=list-title>Cancel</div></div></a></li></ul></div></div></div><script src=./js/lib/require.js></script><script>
   // open-left open-right open-bottom open-top open-popup open-modal open-loading
 </script><script>
 //  require(['./js/lib/jquery', './js/lib/jquery.dim'], function($) {
@@ -8,9 +8,7 @@
 //  });
 
   require(['./js/lib/jquery', './js/lib/jquery.model'], function($) {
-    $.dim('test123', {
-      list: ['aaa', 'bbb']
-    });
+
     $.dim('appInit', ['app'], function(r, exports, module) {
       var
         self = this,
@@ -207,7 +205,108 @@
             });
         },
         init: function() {
-          app.init();
+          app
+            .on('pageFirstInit', 'smart-select', function(page, state) {
+              $.dim('smart-select', function(r, exports, module) {
+                var
+                  self = this,
+                  mc = function(model, ctrl) {
+                    ctrl && $.each(ctrl, function(i, n) {
+                      n && n.call(self, model);
+                    });
+                    return model;
+                  };
+
+                module.exports = mc({
+                  title: 'smart select',
+                  style: 'multiple',
+                  list: []
+                }, {
+                  liClick: function() {
+                    $(this).on('click', 'li', function() {
+                      var
+                        id = $(this).data('id'),
+                        $select = $('#' + id),
+                        index = $(this).parent().find('li:not(.list-divider)').index(this);
+
+                      if ($select.attr('multiple')) {
+                        $(this).toggleClass('li-selected');
+                      } else {
+                        $(this).addClass('li-selected').siblings().removeClass('li-selected');
+                      }
+                      $select.find('option').eq(index).prop('selected', $(this).hasClass('li-selected'));
+                    });
+                  }
+                });
+              });
+            })
+            .on('pageInit', 'smart-select', function(page, state) {
+              var id = state.query.id,
+                $select = $('#' + id),
+                name = $select.attr('name') || id,
+                list = [],
+                $optgroup = $select.find('optgroup');
+
+              if ($optgroup && $optgroup.length) {
+                $optgroup.each(function() {
+                  var label = $(this).attr('label');
+                  if (label) {
+                    list.push({
+                      divider: label,
+                      text: '',
+                      selected: false,
+                      id: id
+                    });
+                  }
+                  $(this).find('option').each(function() {
+                    list.push({
+                      text: $(this).text(),
+                      selected: $(this).is(':selected'),
+                      divider: '',
+                      id: id
+                    });
+                  });
+                });
+              } else {
+                $select.find('option').each(function() {
+                  list.push({
+                    text: $(this).text(),
+                    selected: $(this).is(':selected'),
+                    divider: '',
+                    id: id
+                  });
+                });
+              }
+
+
+              $.dim(['smart-select'], function(r, exports, module) {
+                var ss = r('smart-select');
+                ss.style = $select.attr('multiple');
+                ss.title = name;
+                ss.list = list;
+              });
+            })
+            .on('pageInit', function() {
+              $('[href^="#!/smart-select?id="]').each(function() {
+                var
+                  $this = $(this),
+                  href = $this.attr('href'),
+                  id = app.getState(href).query.id,
+                  $select = $('#' + id),
+                  name = $select.attr('name') || id,
+                  $title = $this.find('.list-title'),
+                  $wz = $this.find('.list-wz');
+
+                $title.html(name.replace(/^\w/, function($0) {
+                  return $0.toUpperCase();
+                }));
+                $wz.html($select.find('option:selected').map(function() {
+                  return $(this).text()
+                }).get().join(', '));
+
+              });
+            })
+            .init();
         }
       });
     });

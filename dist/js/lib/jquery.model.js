@@ -409,7 +409,9 @@
           return app;
         },
         getState: function(hash) {
-          var rtv = {},
+          var rtv = {
+              query: {}
+            },
             arr,
             arr1;
           hash = hash || location.hash;
@@ -523,7 +525,7 @@
             fromPage = $fromPage[0];
             $.each(router.events.pageOut, function(i, n) {
               if (n.pageName === formPageId || n.pageName === void(0) || n.pageName === null) {
-                n.callback(fromPage);
+                n.callback(fromPage, state);
               }
             });
 
@@ -572,7 +574,7 @@
 
 
             $.each(router.visitor, function(i, n) {
-              if (n.pageId == state.pageId) {
+              if (n.pageId == state.pageId) { //  && $.param(n.query) === $.param(state.query)
                 isVisitor = true;
                 return false;
               }
@@ -585,14 +587,14 @@
           if (!isVisitor) {
             $.each(router.events.pageFirstInit, function(i, n) {
               if (n.pageName === pageId || n.pageName === void(0) || n.pageName === null) {
-                n.callback(page);
+                n.callback(page, state);
               }
             });
           }
 
           $.each(router.events.pageInit, function(i, n) {
             if (n.pageName === pageId || n.pageName === void(0) || n.pageName === null) {
-              n.callback(page);
+              n.callback(page, state);
             }
           });
 
@@ -602,13 +604,13 @@
           router.visitor.push(state);
           var getIndex;
           $.each(router.history, function(i, st) {
-            if (st.pageId === state.pageId) {
+            if (st.pageId === state.pageId && $.param(st.query) === $.param(state.query)) {
               getIndex = i;
               return false;
             }
           });
 
-          if (index >= 0) {
+          if (getIndex >= 0) {
             window.routerIndex = index;
           } else {
             if (from) {
@@ -660,7 +662,7 @@
           if (state.isUrl) {
 
             $.each(router.history, function(i, st) {
-              if (st.pageId === state.pageId) {
+              if (st.pageId === state.pageId && $.param(st.query) === $.param(state.query)) {
                 index = i;
                 return false;
               }
@@ -781,8 +783,12 @@
 
 //      window.router = router;
 
+    router.on('pageFirstInit', function(page) {
+      new IScroll($(page).find('.wrapper')[0], { mouseWheel: true });
+    });
+
     module.exports = mc(router, {
-      click: function() {
+      aClick: function() {
         $(document).on('click', 'a', function() {
           var $this = $(this),
             href = $this.attr('href'),
@@ -832,9 +838,6 @@
             }
           }
         });
-      },
-      scroll: function() {
-        new IScroll('.wrapper', { mouseWheel: true });
       }
     });
   });
@@ -885,7 +888,8 @@
       off: router.off,
       go: router.go,
       back: router.back,
-      init: router.init
+      init: router.init,
+      getState: router.getState
     }, {
       backbutton: function() {
         $(document).on('backbutton', function() {

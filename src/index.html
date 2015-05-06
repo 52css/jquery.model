@@ -141,18 +141,18 @@
                       </div>
                     </a>
                   </li>
-                  <li>
-                    <a href="checkbox.html" class="list-content">
-                      <div class="list-inner">
-                        <div class="list-title">
-                          Checkbox
-                        </div>
-                        <div class="list-after">
-                          <i class="fa fa-lg fa-angle-right"></i>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
+                  <!--<li>-->
+                    <!--<a href="checkbox.html" class="list-content">-->
+                      <!--<div class="list-inner">-->
+                        <!--<div class="list-title">-->
+                          <!--Checkbox-->
+                        <!--</div>-->
+                        <!--<div class="list-after">-->
+                          <!--<i class="fa fa-lg fa-angle-right"></i>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</a>-->
+                  <!--</li>-->
                   <li>
                     <a href="grid.html" class="list-content">
                       <div class="list-inner">
@@ -201,6 +201,18 @@
                       </div>
                     </a>
                   </li>
+                  <li>
+                    <a href="form-smart-select.html" class="list-content">
+                      <div class="list-inner">
+                        <div class="list-title">
+                          Smart Select
+                        </div>
+                        <div class="list-after">
+                          <i class="fa fa-lg fa-angle-right"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
                 </ul>
               </section>
             </div>
@@ -222,8 +234,58 @@
           </div>
         </header>
         <div class="content">
-          this page 1
-          <a href="javascript:history.back();" class="btn">back</a>
+          <div class="wrapper">
+            <div class="scoller">
+              this page 1
+              <a href="javascript:history.back();" class="btn">back</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="smart-select" class="smart-select page out">
+        <header class="header">
+          <div class="header-left">
+            <a href="javascript:history.back();" class="btn btn-link">
+              <i class="fa fa-lg fa-chevron-left"></i> Back
+            </a>
+          </div>
+          <div class="header-center">
+            <h1 class="header-center-in">
+              {{title}}
+            </h1>
+          </div>
+          <div class="header-right">
+            <!--<a href="" class="open-right">right</a>-->
+          </div>
+        </header>
+        <div class="content">
+          <div class="wrapper">
+            <div class="scoller">
+              <section class="box box-xl">
+                <ul class="list">
+                  <li vm-repeat="list" vm-class="{'li-selected': $item.selected, 'li-multiple': style == 'multiple', 'list-divider': $item.divider}" vm-data="{'id': $item.id}">
+                    <div vm-if="$item.divider">
+                      {{$item.divider}}
+                    </div>
+                    <a href="" class="list-content" vm-else>
+                      <div class="list-media">
+                        <i class="fa fa-2x fa-circle-thin color-gray"></i>
+                        <i class="fa fa-2x fa-check-circle theme-highlight-color"></i>
+                      </div>
+                      <div class="list-inner">
+                        <div class="list-title">
+                          {{$item.text}}
+                        </div>
+                        <div class="list-after">
+                          <i class="fa fa-check theme-highlight-color"></i>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -336,9 +398,7 @@
 //  });
 
   require(['./js/lib/jquery', './js/lib/jquery.model'], function($) {
-    $.dim('test123', {
-      list: ['aaa', 'bbb']
-    });
+
     $.dim('appInit', ['app'], function(r, exports, module) {
       var
         self = this,
@@ -535,7 +595,108 @@
             });
         },
         init: function() {
-          app.init();
+          app
+            .on('pageFirstInit', 'smart-select', function(page, state) {
+              $.dim('smart-select', function(r, exports, module) {
+                var
+                  self = this,
+                  mc = function(model, ctrl) {
+                    ctrl && $.each(ctrl, function(i, n) {
+                      n && n.call(self, model);
+                    });
+                    return model;
+                  };
+
+                module.exports = mc({
+                  title: 'smart select',
+                  style: 'multiple',
+                  list: []
+                }, {
+                  liClick: function() {
+                    $(this).on('click', 'li', function() {
+                      var
+                        id = $(this).data('id'),
+                        $select = $('#' + id),
+                        index = $(this).parent().find('li:not(.list-divider)').index(this);
+
+                      if ($select.attr('multiple')) {
+                        $(this).toggleClass('li-selected');
+                      } else {
+                        $(this).addClass('li-selected').siblings().removeClass('li-selected');
+                      }
+                      $select.find('option').eq(index).prop('selected', $(this).hasClass('li-selected'));
+                    });
+                  }
+                });
+              });
+            })
+            .on('pageInit', 'smart-select', function(page, state) {
+              var id = state.query.id,
+                $select = $('#' + id),
+                name = $select.attr('name') || id,
+                list = [],
+                $optgroup = $select.find('optgroup');
+
+              if ($optgroup && $optgroup.length) {
+                $optgroup.each(function() {
+                  var label = $(this).attr('label');
+                  if (label) {
+                    list.push({
+                      divider: label,
+                      text: '',
+                      selected: false,
+                      id: id
+                    });
+                  }
+                  $(this).find('option').each(function() {
+                    list.push({
+                      text: $(this).text(),
+                      selected: $(this).is(':selected'),
+                      divider: '',
+                      id: id
+                    });
+                  });
+                });
+              } else {
+                $select.find('option').each(function() {
+                  list.push({
+                    text: $(this).text(),
+                    selected: $(this).is(':selected'),
+                    divider: '',
+                    id: id
+                  });
+                });
+              }
+
+
+              $.dim(['smart-select'], function(r, exports, module) {
+                var ss = r('smart-select');
+                ss.style = $select.attr('multiple');
+                ss.title = name;
+                ss.list = list;
+              });
+            })
+            .on('pageInit', function() {
+              $('[href^="#!/smart-select?id="]').each(function() {
+                var
+                  $this = $(this),
+                  href = $this.attr('href'),
+                  id = app.getState(href).query.id,
+                  $select = $('#' + id),
+                  name = $select.attr('name') || id,
+                  $title = $this.find('.list-title'),
+                  $wz = $this.find('.list-wz');
+
+                $title.html(name.replace(/^\w/, function($0) {
+                  return $0.toUpperCase();
+                }));
+                $wz.html($select.find('option:selected').map(function() {
+                  return $(this).text()
+                }).get().join(', '));
+
+              });
+            })
+            .init();
         }
       });
     });
